@@ -47,7 +47,7 @@ bool AggrigationApp::CheckNodeForReport(int myId,
     MDMHistory mdmHist = detectedNodes.getMDMHistory(senderId);
     NodeHistory nodeHist = detectedNodes.getNodeHistory(senderId);
 
-    BsmCheck bsmCheckList[maxBsmTrustNum];
+    BsmCheck* bsmCheckList = new BsmCheck[maxBsmTrustNum];
     int bsmCheckListSize = 0;
 
     for (int var = 0; var < nodeHist.getBSMNum(); ++var) {
@@ -226,6 +226,7 @@ bool AggrigationApp::CheckNodeForReport(int myId,
             prntAppInst.incFlags(mdChecksTypes::Intersection, mbTypes::intMb[bsm.getSenderMbType()]);
         }
     }
+    delete[] bsmCheckList;
 
     if (checkFailed) {
         prntApp.incCumulFlags(mbTypes::intMb[bsm.getSenderMbType()]);

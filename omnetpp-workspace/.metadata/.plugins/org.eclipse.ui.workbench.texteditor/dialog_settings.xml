@@ -2,12 +2,15 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="EventualStop" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
-		<item value="false" key="wholeword"/>
+		<item value="true" key="wholeword"/>
 		<list key="findhistory">
+			<item value="PrextScenario"/>
+			<item value="pList"/>
+			<item value="bsmCheckList"/>
 			<item value="EventualStop"/>
 			<item value="report"/>
 			<item value="baseName"/>
@@ -20,11 +23,9 @@
 			<item value="(bsm.getSenderMbType());"/>
 			<item value=", bsm.getSenderMbType());"/>
 			<item value="incAll"/>
-			<item value="&quot;)"/>
-			<item value="if (inString == &quot;"/>
-			<item value="attack"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
 			<item value=", mbTypes::"/>
 			<item value="incFlags(mdChecksTypes::"/>
 			<item value="mbTypes::intMb[bsm.getSenderMbType()]);"/>
@@ -32,7 +33,6 @@
 			<item value=".incFlags(mdChecksTypes::"/>
 			<item value=", mbTypes::intMb[bsm.getSenderMbType()]);"/>
 			<item value=","/>
-			<item value=""/>
 			<item value="mb"/>
 			<item value="myAttackType == attackTypes::"/>
 			<item value="pseudo ="/>

@@ -391,7 +391,7 @@ double CaTChChecks::PositionPlausibilityCheck(Coord senderPosition,
             r = r + resolution) {
         int resolutionTheta = (int) (2 * PI * r / (resolution));
         //std::cout << r<< "#" << resolution << "^" << resolutionTheta<<"-";
-        Coord pList[resolutionTheta];
+        Coord* pList = new Coord[resolutionTheta];
         for (int t = 0; t < resolutionTheta; ++t) {
             Coord p(senderPosition.x + r * cos(2 * PI * t / resolutionTheta),
                     senderPosition.y + r * sin(2 * PI * t / resolutionTheta));
@@ -401,6 +401,7 @@ double CaTChChecks::PositionPlausibilityCheck(Coord senderPosition,
 
         double IntersectionTemp = obstacles->calculateInsersionList(
                 senderPosition, r, r, pList, resolutionTheta);
+        delete[] pList;
 
         Intersection = Intersection + IntersectionTemp;
 

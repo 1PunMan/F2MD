@@ -11,6 +11,8 @@
 
 #include "JosephVeinsApp.h"
 
+#include <veins/modules/application/misbehaviorDetection/supportClasses/pyhelper.h>
+
 Define_Module(JosephVeinsApp);
 
 #define serialNumber "IRT-Sybil5"
@@ -128,6 +130,7 @@ void JosephVeinsApp::initialize(int stage) {
         TraCIColor color = TraCIColor(0, 0, 0, 0);
         traciVehicle->setColor(color);
         break;
+
     }
 
 } else if (stage == 1) {
@@ -724,6 +727,16 @@ void JosephVeinsApp::LocalMisbehaviorDetection(BasicSafetyMessage* bsm,
         CaTChChecks mdmV2(myPseudonym, curPosition, curPositionConfidence,
                 curHeading, curHeadingConfidence, Coord(myWidth, myLength));
         BsmCheck bsmCheckV2 = mdmV2.CheckBSM(*bsm, detectedNodes);
+        // raashid
+
+        const std::string savedModelsPath = "/home/mps/F2MD/omnetpp-workspace/veins-veins-4.6/src/veins/modules/application/misbehaviorDetection/mdChecks/mlTrainersAndPredictors";
+        const std::string mlResultsPath = "/home/mps/F2MD/omnetpp-workspace/veins-veins-4.6/src/veins/modules/application/misbehaviorDetection/mdChecks/mlResults";
+        char* modelPath = (char*)"/home/mps/F2MD/omnetpp-workspace/veins-veins-4.6/src/veins/modules/application/misbehaviorDetection/mdChecks/mlTrainersAndPredictors/digits_get_predictions.py";
+        auto mlCheck = MLCheck(savedModelsPath, mlResultsPath);
+        mlCheck.getPrediction(modelPath);
+        // mlCheck.getPrediction("other_model_name");
+
+        // dihsaar
         bool result = AppV2.CheckNodeForReport(myPseudonym, *bsm, bsmCheckV2,
                 detectedNodes);
         if (result) {

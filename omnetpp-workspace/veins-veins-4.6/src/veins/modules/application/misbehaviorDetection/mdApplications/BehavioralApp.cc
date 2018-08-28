@@ -49,7 +49,7 @@ bool BehavioralApp::CheckNodeForReport(int myId,
     MDMHistory mdmHist = detectedNodes.getMDMHistory(senderId);
     NodeHistory nodeHist = detectedNodes.getNodeHistory(senderId);
 
-    BsmCheck bsmCheckList[maxBsmTrustNum];
+    BsmCheck* bsmCheckList = new BsmCheck[maxBsmTrustNum];
     int bsmCheckListSize = 0;
 
     for (int var = 0; var < nodeHist.getBSMNum(); ++var) {
@@ -258,7 +258,7 @@ std::tuple<double, int> BehavioralApp::getZeroNumber(BasicSafetyMessage bsm, Bsm
     MDMHistory mdmHist = detectedNodes.getMDMHistory(senderId);
     NodeHistory nodeHist = detectedNodes.getNodeHistory(senderId);
 
-    BsmCheck bsmCheckList[maxBsmTrustNum];
+    BsmCheck* bsmCheckList = new BsmCheck[maxBsmTrustNum];
     int bsmCheckListSize = 0;
 
     for (int var = 0; var < nodeHist.getBSMNum(); ++var) {
@@ -370,6 +370,7 @@ std::tuple<double, int> BehavioralApp::getZeroNumber(BasicSafetyMessage bsm, Bsm
             zeroCount++;
         }
     }
+    delete[] bsmCheckList;
 
     return std::make_tuple(zeroSum, zeroCount);
 }
